@@ -13,7 +13,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     let file = fs::File::open(event_path)?;
     let reader = io::BufReader::new(file);
 
-    let data = serde_json::from_reader(reader)?;
+    println!("opened file");
+
+    let data = serde_json::from_reader(reader);
 
     println!("{:#?}", data);
 
