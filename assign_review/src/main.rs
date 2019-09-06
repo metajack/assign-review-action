@@ -2,6 +2,7 @@
 //use jsonpath_lib as jsonpath;
 use std::error::Error;
 use std::{fs, io};
+use serde_json::Value;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let event_name = std::env::var("GITHUB_EVENT_NAME")?;
@@ -15,9 +16,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     println!("opened file");
 
-    let data = serde_json::from_reader(reader);
+    let data: Value = serde_json::from_reader(reader)?;
 
-    println!("{:#?}", data);
+    println!("{:?}", data);
 
     Ok(())
 }
